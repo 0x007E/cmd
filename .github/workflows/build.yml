@@ -1,0 +1,44 @@
+name: CMD Build Pipeline
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  export-kicad:
+    env:
+      BaseFileName: "CMD"
+      Folder: "./pcb"
+      SchematicFileExtension: "kicad_sch"
+      PCBFileExtension: "kicad_pcb"
+      OutputFolder: "./output"
+      ConfigFilePath: ".kibot/build.kibot.yaml"
+    runs-on: ubuntu-latest
+    steps:
+    - name: Fetch repository
+      uses: actions/checkout@v4
+    
+    - name: Prepare output directory
+      run: |
+        mkdir -p ${{ env.OutputFolder }}
+        cp -r ${{ env.Folder }} ${{ env.OutputFolder }}/kicad
+        cp ./LICENSE ${{ env.OutputFolder }}
+
+    - name: Run KiBOT
+      uses: INTI-CMNB/KiBot@v2_dk7
+      with:
+        config: ${{ env.ConfigFilePath }}
+        dir: ${{ env.OutputFolder }}
+        schema: "${{ env.Folder }}/${{ env.BaseFileName }}.${{ env.SchematicFileExtension }}"
+        board: "${{ env.Folder }}/${{ env.BaseFileName }}.${{ env.PCBFileExtension }}"
+
+    - name: Archive artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: kicad-export
+        path: ${{ env.OutputFolder }}
+        retention-days: 1
