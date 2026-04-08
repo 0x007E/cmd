@@ -138,8 +138,7 @@ outputs:
           mirror: false
           monochrome: true
           mirror: true
-        - layers:
-          - layer: F.Fab
+        - layers: [ F.Fab, User.Drawings2 ]
           sheet: '(Top Fabrication)'
           mirror: false
           monochrome: true

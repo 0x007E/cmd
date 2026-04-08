@@ -8551,6 +8551,8 @@
     (stroke (width 0.15) (type solid)) (fill solid) (layer "F.SilkS") (tstamp 1c2a2efc-ec62-48e3-9fbf-e71637fe312e))
   (gr_rect (start 127.254 63.49) (end 164.8542 116.84)
     (stroke (width 0.1) (type default)) (fill none) (layer "Edge.Cuts") (tstamp b3c0214f-1d68-44ab-b33d-805d40233a3a))
+  (gr_rect (start 120.904 83.053) (end 128.27 98.547)
+    (stroke (width 0.15) (type default)) (fill none) (layer "User.1") (tstamp 04d2a47f-29d0-4c45-8e60-94a59ebf7c9a))
   (gr_text "${acronym}" (at 164.211 115.687 90) (layer "F.Cu") (tstamp a04c5417-a033-4639-b500-8382e7791029)
     (effects (font (size 0.75 0.75) (thickness 0.12)))
   )
